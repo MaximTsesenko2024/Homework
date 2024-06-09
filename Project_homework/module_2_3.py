@@ -3,9 +3,9 @@ print('Мой список: ', my_list)
 i = 0
 while not (my_list[i] < 0):
     i += 1
+    if i > len(my_list):
+        break
     if my_list[i-1] == 0:
         continue
     print('Положительное число из списка: ', my_list[i-1])
-    if i == len(my_list):
-        break
 print('End')
