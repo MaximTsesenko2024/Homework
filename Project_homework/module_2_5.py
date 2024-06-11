@@ -1,6 +1,6 @@
 def get_matrix(n, m, value):
     matrix = []
-    if n < 1 or m < 1:
+    if n <= 0 or m <= 0:
         return matrix
     for i in range(n):
         matrix.append([])
