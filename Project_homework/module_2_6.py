@@ -5,6 +5,7 @@ def single_root_words(root_word, *other_words):
             same_words.append(other_words[i])
     return same_words
 
+
 word = input('Введите основное слово: ')
 words = input('Введите список слов для проверки (через пробел): ')
 List_words = words.split(' ')
