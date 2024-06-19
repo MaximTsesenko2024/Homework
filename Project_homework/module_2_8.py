@@ -7,6 +7,6 @@ def get_multiplied_digits(number):
         return first
 
 
-num = 40203
+num = int(input('Введите число: '))
 mult = get_multiplied_digits(num)
 print(num, mult)
