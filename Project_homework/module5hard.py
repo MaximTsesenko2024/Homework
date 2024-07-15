@@ -12,7 +12,7 @@ class Users:
             return self.nickname == other.nickname
         elif isinstance(other, str):
             return self.nickname == other
-        elif isinstance(other, type(None)):
+        elif other is None:
             return False
         else:
             print('Неправильный тип данных.')
@@ -44,7 +44,7 @@ class Video:
             return self.title == other.title
         elif isinstance(other, str):
             return other.lower() in self.title.lower()
-        elif isinstance(other, type(None)):
+        elif other is None:
             return False
         else:
             print('Неправильный тип данных.')
@@ -73,7 +73,7 @@ class UrTube:
         return None
 
     def register(self, nickname, password, age):
-        if isinstance(self.find_user(nickname), type(None)):
+        if self.find_user(nickname) is None:
             user = Users(nickname, password, int(age))
             self.users.append(user)
             self.current_user = user
@@ -119,7 +119,7 @@ class UrTube:
                     return i
             return None
 
-        if isinstance(self.current_user, type(None)):
+        if self.current_user is None:
             print("Войдите в аккаунт, чтобы смотреть видео")
             return 1
         found_video = find_video(self.videos, name_film)
@@ -138,7 +138,6 @@ class UrTube:
         else:
             print(f'Видео "{name_film}" не найдено.')
             return 3
-
 
 
 if __name__ == "__main__":
@@ -168,8 +167,14 @@ if __name__ == "__main__":
     ur.watch_video('Лучший язык программирования 2024 года!')
 
     while True:
-        choice = int(input('Выберите действие\n1 - Регистрация нового пользователя\n2 - Вход пользователя\n'
-                       '3 - Добавить видео\n4 - Найти видео\n5 - Просмотр видео\n0 - Выход\n'))
+        choice = input('Выберите действие\n1 - Регистрация нового пользователя\n'
+                           '2 - Вход пользователя\n'
+                           '3 - Добавить видео\n4 - Найти видео\n5 - Просмотр видео\n0 - Выход\n')
+        if not choice in '012345':
+            print('Неравильный ввод. Повторите')
+            continue
+        else:
+            choice = int(choice)
         if choice == 1:
             login = input('Введите имя пользователя: ')
             password = input('Введите пароль: ')
