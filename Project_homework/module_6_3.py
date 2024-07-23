@@ -2,9 +2,6 @@ class Horse:
     x_distance = 0
     sound = 'Frrr'
 
-    def __init__(self):
-        pass
-
     def run(self, dx):
         self.x_distance += dx
 
