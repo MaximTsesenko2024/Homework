@@ -1,13 +1,9 @@
 import os
 import time
 
-os.chdir('module_7')
 directory = os.getcwd()
 print(directory)
 for path, dirs, files in os.walk(directory):
-    print(path)
-    print(dirs)
-#    print(files)
     for file in files:
         if os.path.isfile(file):
             filepath = os.path.join(path, file)
