@@ -3,10 +3,10 @@ from time import sleep
 
 
 class Knight(Thread):
-    def __init__(self, name, power):
+    def __init__(self, name: str, power: int, count_enemy: int = 100):
         self.knight_name = name
         self.power = power
-        self.count_enemy = 100
+        self.count_enemy = count_enemy
         super().__init__()
 
     def run(self):
