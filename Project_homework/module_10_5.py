@@ -18,8 +18,8 @@ if __name__ == '__main__':
         read_info(file)
     end = datetime.now()
     print('Линейный метод ', end - start)
-    with multiprocessing.Pool(processes=6) as pool:
-        start = datetime.now()
+    start = datetime.now()
+    with multiprocessing.Pool(processes=4) as pool:
         pool.map(read_info, files)
     end = datetime.now()
     print('Многопроцессорный метод ', end - start)
