@@ -15,17 +15,18 @@ class MyClass:
 
 def introspection_info(obj: object):
     data = {}
-    attrs = dir(obj)
     data['name'] = type(obj).__name__
+    data['modul'] = type(obj).__module__
+    data['type'] = type(obj)
+    if isinstance(obj, (int, str, dict, list, tuple, set)):
+        obj = type(obj)
+    attrs = dir(obj)
     data['methods'] = []
     data['function'] = []
     data['attributes'] = [i for i in obj.__dict__.keys()]
-    data['modul'] = type(obj).__module__
     for attr in attrs:
         tp = getattr(obj, attr)
-        if isclass(tp):
-            data['type'] = type(obj)
-        elif isroutine(tp):
+        if isroutine(tp):
             data['methods'].append(attr)
         elif isfunction(tp):
             data['function'].append(attr)
@@ -33,4 +34,16 @@ def introspection_info(obj: object):
 
 
 my_val = MyClass()
+pprint(introspection_info(my_val))
+my_val = 42
+pprint(introspection_info(my_val))
+my_val = ''
+pprint(introspection_info(my_val))
+my_val = []
+pprint(introspection_info(my_val))
+my_val = ()
+pprint(introspection_info(my_val))
+my_val = {1: 4}
+pprint(introspection_info(my_val))
+my_val = {1,2}
 pprint(introspection_info(my_val))
