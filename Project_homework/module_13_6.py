@@ -60,7 +60,6 @@ async def information(massage):
 @dsp.message_handler(state=UserState.age)
 async def set_growth(message, state):
     await state.update_data(age=message.text)
-    data = await state.get_data()
     await message.answer('Введите свой рост, пожалуйста')
     await UserState.growth.set()
 
@@ -68,7 +67,6 @@ async def set_growth(message, state):
 @dsp.message_handler(state=UserState.growth)
 async def set_weight(message, state):
     await state.update_data(growth=message.text)
-    data = await state.get_data()
     await message.answer('Введите свой вес, пожалуйста')
     await UserState.weight.set()
 
