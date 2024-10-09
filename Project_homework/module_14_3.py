@@ -49,7 +49,7 @@ class UserState(StatesGroup):
     weight = State()
 
 
-api = "7284490976:AAEOor2Wg8N-7i29K9X9MXf4GK_cQPF25cc"
+api = ""
 bot = Bot(token=api)
 dsp = Dispatcher(bot, storage=MemoryStorage())
 
