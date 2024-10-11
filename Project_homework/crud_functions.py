@@ -3,6 +3,7 @@ import sqlite3
 
 def conect(filename: str):
     conection = sqlite3.connect(filename)
+    conection = initiate_db(conection)
     return conection
 
 
