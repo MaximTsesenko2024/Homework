@@ -3,6 +3,7 @@ import sqlite3
 
 def conect(filename: str):
     conection = sqlite3.connect(filename)
+    conection = initiate_db(conection)
     return conection
 
 
@@ -16,7 +17,32 @@ def initiate_db(conection: sqlite3.Connection):
     price INTEGER NOT NULL,
     filename TEXT)
     ''')
+    cursor.execute('''
+     CREATE TABLE IF NOT EXISTS Users(
+    id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    balance INTEGER NOT NULL)   
+    ''')
     conection.commit()
+    return conection
+
+
+def is_included(username: str, conection: sqlite3.Connection):
+    cursor = conection.cursor()
+    user = cursor.execute('''SELECT id FROM Users WHERE username = ?''', (username,)).fetchone()
+    return user is not None
+
+
+def add_user(username: str, email: str, age: int, conection: sqlite3.Connection):
+    if is_included(username, conection):
+        return conection
+    else:
+        cursor = conection.cursor()
+        cursor.execute('''INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)''',
+                       (username, email, age, 1000))
+        conection.commit()
     return conection
 
 
